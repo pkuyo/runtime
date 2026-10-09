@@ -564,6 +564,7 @@
         }
         catch [System.Runtime]System.Object
         {
+            pop
             .try
             {
                 leave   EnclosingCatch
@@ -746,7 +747,7 @@
     {
         .maxstack 1
 
-        .try {}
+        .try { leave.s MethodEnd }
         catch ExceptionRegionTests
         {
             leave.s MethodEnd
@@ -928,7 +929,7 @@
         ret
     }
 
-    .method public static void Filter.SharesFinallyStart_Invalid_FilterAndHandlerSameOffset() cil managed
+    .method public static void Filter.SharesFinallyStart_Invalid_EHClauseOverlap() cil managed
     {
         .maxstack 1
 
@@ -955,7 +956,7 @@
         .try OuterTry to SharedStart finally handler SharedStart to MethodEnd
     }
 
-    .method public static void Filter.SharesUnreachableFinallyStart_Invalid_FilterAndHandlerSameOffset() cil managed
+    .method public static void Filter.SharesUnreachableFinallyStart_Invalid_EHClauseOverlap() cil managed
     {
         .maxstack 1
 
